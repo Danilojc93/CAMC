@@ -8,25 +8,29 @@ on:
 permissions:
   contents: read
   pages: write
-  id-token: write
+id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Baixar o código
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
-      - name: Preparar o pnpm
-        uses: pnpm/action-setup@v4
+      - name: Instalar o pnpm
+        uses: pnpm/action-setup@v3
         with:
-          version: 11
+          version: 9
 
       - name: Preparar o Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: pnpm
+          node-version: '22'
+          cache: 'pnpm'
 
       - name: Instalar dependências
         run: pnpm install --frozen-lockfile
