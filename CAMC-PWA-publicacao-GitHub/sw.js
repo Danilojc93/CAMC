@@ -1,4 +1,4 @@
-const CACHE = 'camc-v1'
+const CACHE = 'camc-v2'
 const APP_SHELL = ['./', './manifest.webmanifest', './camc-icon.svg']
 
 self.addEventListener('install', (event) => {
